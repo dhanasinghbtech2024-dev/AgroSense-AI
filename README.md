@@ -1,50 +1,61 @@
 # AgroSense AI 🌱
 
-RAG-styled crop advisory chat UI for Indian smallholder farmers, built with React + Vite.
+An intelligent, Gemini-powered crop advisory and pest risk assistant designed specifically for Indian smallholder farmers. 
 
-## Setup
+AgroSense AI leverages Google's Gemini 1.5 Flash API to deliver expert agricultural guidance through an intuitive web interface. Operating through specialized agentic modules, it simulates a RAG (Retrieval-Augmented Generation) system to provide farmers with actionable advice based on soil health, local weather patterns, and pest resistance data.
 
-```bash
-npm install
-npm run dev
-```
+## Features ✨
 
-Then open the URL Vite prints (usually http://localhost:5173).
+- **🌾 Crop Advisor:** Get tailored advice on crop health, growth stages, soil nutrients, and fertilizer recommendations.
+- **🐛 Pest Diagnostician:** Describe symptoms and get real-time identification of pests/diseases along with practical remedies.
+- **🌦 Seasonal Risk Alert:** Receive early warnings about seasonal risks, weather-related threats, and preventive measures.
+- **🧠 Powered by Gemini:** Utilizes Google's Gemini 1.5 Flash for fast, intelligent, and context-aware responses.
 
-## ⚠️ Important: the API call needs a backend proxy
+## Tech Stack 🛠️
 
-`src/App.jsx` currently calls `https://api.anthropic.com/v1/messages` **directly from the browser** with no API key attached. As shipped this will not work, because:
+- **Frontend:** React, Vite
+- **Styling:** CSS (Clean, Modern, Responsive UI)
+- **AI Integration:** `@google/generative-ai` SDK (Gemini 1.5 Flash)
 
-- The Anthropic API requires an `x-api-key` header — none is set here.
-- Anthropic's API does not allow direct browser calls (CORS), and you should never put a secret API key in frontend code anyway, since anyone could open dev tools and steal it.
+## Getting Started 🚀
 
-To make this functional, add a tiny backend (Node/Express, a Vercel/Netlify function, Cloudflare Worker, etc.) that:
-1. Receives the chat messages from the frontend.
-2. Adds your `ANTHROPIC_API_KEY` (kept server-side only, e.g. in a `.env` file) and forwards the request to `https://api.anthropic.com/v1/messages`.
-3. Returns the response back to the frontend.
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 
-Then change the `fetch` URL in `sendMessage()` inside `src/App.jsx` to point at your own backend endpoint instead of Anthropic's API directly.
+### Installation
 
-## Project structure
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/dhanasinghbtech2024-dev/AgroSense-AI.git
+   cd AgroSense-AI
+   ```
 
-```
-agrosense-ai/
-├── index.html
-├── package.json
-├── vite.config.js
-├── src/
-│   ├── main.jsx      # React entry point
-│   └── App.jsx        # Main AgroSense AI component (extracted from source PDF)
-└── README.md
-```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-## Push to GitHub
+3. **Set up environment variables:**
+   - Create a `.env` file in the root directory.
+   - Add your Gemini API key to the `.env` file:
+     ```env
+     VITE_GEMINI_API_KEY=your_gemini_api_key_here
+     ```
 
-```bash
-git init
-git add .
-git commit -m "Initial commit: AgroSense AI"
-git branch -M main
-git remote add origin <your-repo-url>
-git push -u origin main
-```
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+5. Open your browser and navigate to `http://localhost:5173/` (or the port specified by Vite) to use the application.
+
+## SDG Alignment 🌍
+
+AgroSense AI aligns with the United Nations Sustainable Development Goals:
+- **🎯 SDG 2:** Zero Hunger
+- **☀️ SDG 13:** Climate Action
+- **🌿 SDG 15:** Life on Land
+
+## Disclaimer ⚠️
+
+*Advice provided by AgroSense AI is AI-generated. While it aims to be as accurate as possible, please consult a local Krishi Sevak or agricultural expert for critical decisions.*
